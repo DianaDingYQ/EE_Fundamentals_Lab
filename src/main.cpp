@@ -1,31 +1,31 @@
 #include <Arduino.h>
 
 // put function declarations here:
-// 定义模拟输入引脚
+// Define analog input pins
 const int analogPin1 = 1;  // GPIO1
 const int analogPin2 = 2;  // GPIO2
 
 void setup() {
-  // 初始化串口监视器，设置波特率为 115200
+  // Initialize serial monitor with a baud rate of 115200
   Serial.begin(115200);
 
-  // 设置 ADC 分辨率为 12 位
+  // Set ADC resolution to 12 bits
   analogReadResolution(12);
 
-  // 打印初始化信息
+  // Print initialization message
   Serial.println("ESP32 ADC Voltage Reader");
 }
 
 void loop() {
-  // 从 GPIO1 和 GPIO2 读取 ADC 值
+  // Read ADC values from GPIO1 and GPIO2
   int adcValue1 = analogRead(analogPin1);
   int adcValue2 = analogRead(analogPin2);
 
-  // 将 ADC 值转换为电压
-  float voltage1 = (adcValue1 / 4095.0) * 3.3; // 参考电压为 3.3V
+  // Convert ADC values to voltage
+  float voltage1 = (adcValue1 / 4095.0) * 3.3; 
   float voltage2 = (adcValue2 / 4095.0) * 3.3;
 
-  // 打印结果到串口监视器
+  // Print voltage readings to the serial monitor
   Serial.print("GPIO1 Voltage: ");
   Serial.print(voltage1);
   Serial.println(" V");
@@ -36,5 +36,6 @@ void loop() {
 
   Serial.println("-------------------------");
 
+  // Delay for 1 second
   delay(1000);
 }
